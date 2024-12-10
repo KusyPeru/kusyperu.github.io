@@ -1,0 +1,98 @@
+---
+import imgWelcome from "../../assets/welcome/welcome.webp";
+---
+
+<section class="bienvenida relative h-[600px] overflow-hidden">
+  <!-- Slide 1 -->
+  <div
+    class="carousel-slide absolute inset-0 opacity-100 transition-opacity duration-1000"
+  >
+    <img
+      src={imgWelcome.src}
+      alt="Bienvenida"
+      class="w-full h-full object-cover"
+    />
+    <div
+      class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center"
+    >
+      <div class="text-center text-white px-4">
+        <h1 class="text-5xl font-bold mb-4">Bienvenidos a Kusy</h1>
+        <p class="text-xl">Descubre tu estilo único</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 2 -->
+  <div
+    class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-1000"
+  >
+    <img src={imgWelcome.src} alt="Moda" class="w-full h-full object-cover" />
+    <div
+      class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center"
+    >
+      <div class="text-center text-white px-4">
+        <h2 class="text-5xl font-bold mb-4">Tendencias 2024</h2>
+        <p class="text-xl">La mejor moda para él y ella</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 3 -->
+  <div
+    class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-1000"
+  >
+    <img
+      src={imgWelcome.src}
+      alt="Ofertas"
+      class="w-full h-full object-cover"
+    />
+    <div
+      class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center"
+    >
+      <div class="text-center text-white px-4">
+        <h2 class="text-5xl font-bold mb-4">Calidad Garantizada</h2>
+        <p class="text-xl">Las mejores marcas a precios increíbles</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation dots -->
+  <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+    <button class="w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-100"
+    ></button>
+    <button class="w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-100"
+    ></button>
+    <button class="w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-100"
+    ></button>
+  </div>
+</section>
+
+<script lang="js" type="module">
+  let currentSlide = 0;
+  const slides = document.querySelectorAll(".carousel-slide");
+  const puntos = document.querySelectorAll(".bottom-4 button");
+
+  function showSlide(index) {
+    slides.forEach((slide) => (slide.style.opacity = "0"));
+    puntos.forEach((punto) => (punto.style.opacity = "0.5"));
+    slides[index].style.opacity = "1";
+    puntos[index].style.opacity = "1";
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  // Initialize carousel
+  showSlide(0);
+  setInterval(nextSlide, 5000);
+
+  // Add click events to puntos
+  puntos.forEach((punto, index) => {
+    punto.addEventListener("click", () => {
+      currentSlide = index;
+      showSlide(currentSlide);
+    });
+  });
+</script>

@@ -1,0 +1,22 @@
+---
+import logoLight from "../../assets/icons/logo_light.svg";
+import iconSearch from "../../assets/icons/icon_search.svg";
+import iconShoppingCart from "../../assets/icons/icon_shopping_cart.svg";
+---
+
+<div>
+  <img src={logoLight.src} alt="Kusy" />
+</div>
+<nav>
+  <ul class="flex text-sm gap-8 [&>li>a]:inline-block">
+    <li><a href="#">INICIO</a></li>
+    <li><a href="#">CATEGORÍAS</a></li>
+    <li><a href="#">SOBRE NOSOTROS</a></li>
+  </ul>
+</nav>
+<nav>
+  <ul class="flex gap-8">
+    <li><img src={iconSearch.src} alt="" /></li>
+    <li><img src={iconShoppingCart.src} alt="" /></li>
+  </ul>
+</nav>
