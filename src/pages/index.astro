@@ -13,17 +13,17 @@ import Categories from "../components/Home/Categories.astro";
 
 <Layout title="Kusy Perú">
   <header
-    class="backdrop-blur-lg bg-white/30 py-4 px-10 flex items-center fixed z-50 top-0 w-full justify-between"
+    class="bg-white py-4 px-10 flex items-center fixed z-50 top-0 w-full justify-between shadow-sm border-b border-gray-100"
   >
     <Header />
   </header>
-  <main class="mt-16">
-    <Welcome />
-    <OurSelection />
-    <BannerGenres />
-    <Categories />
-  </main>
-  <footer class="bg-[#333333] text-white py-12">
-    <Footer />
-  </footer>
 </Layout>
+<main class="mt-8 bg-gray-50/50">
+  <Welcome />
+  <OurSelection />
+  <BannerGenres />
+  <Categories />
+</main>
+<footer class="bg-[#333333] text-white py-12">
+  <Footer />
+</footer>
