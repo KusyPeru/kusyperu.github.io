@@ -1,0 +1,88 @@
+---
+import womenImage from "../../assets/clothing/women_clothing/mujer_bienvenida.webp";
+import menImage from "../../assets/clothing/men_clothing/hombre_bienvenida.webp";
+---
+
+<section class="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+  <h2 class="text-3xl font-bold text-center mb-12">Nuestras Categorías</h2>
+
+  <div class="grid md:grid-cols-2 gap-8">
+    <!-- Para Ella Category -->
+    <a href="/para-ella" class="group">
+      <div class="relative overflow-hidden rounded-2xl">
+        <div class="aspect-[4/5]">
+          <img
+            src={womenImage.src}
+            alt="Categoría Para Ella"
+            class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+          />
+        </div>
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end"
+        >
+          <div class="p-8 w-full">
+            <h3 class="text-white text-2xl font-semibold mb-2">Para Ella</h3>
+            <p class="text-white/90 mb-4">
+              Descubre nuestra colección elegante para mujer
+            </p>
+            <span class="inline-flex items-center text-white">
+              Explorar
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 ml-2 transform transition-transform group-hover:translate-x-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Para El Category -->
+    <a href="/para-el" class="group">
+      <div class="relative overflow-hidden rounded-2xl">
+        <div class="aspect-[4/5]">
+          <img
+            src={menImage.src}
+            alt="Categoría Para Él"
+            class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+          />
+        </div>
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end"
+        >
+          <div class="p-8 w-full">
+            <h3 class="text-white text-2xl font-semibold mb-2">Para Él</h3>
+            <p class="text-white/90 mb-4">
+              Explora nuestra colección exclusiva para hombre
+            </p>
+            <span class="inline-flex items-center text-white">
+              Explorar
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 ml-2 transform transition-transform group-hover:translate-x-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
