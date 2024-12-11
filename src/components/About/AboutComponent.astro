@@ -1,0 +1,49 @@
+---
+import imageAbout from "../../assets/about/about_hero.webp";
+---
+
+<!-- Hero Image Section -->
+<div class="w-full h-[80vh] relative">
+  <img
+    src={imageAbout.src}
+    alt="Kusy Perú Moda"
+    class="w-full h-full object-cover"
+  />
+  <div class="absolute inset-0 bg-black/30"></div>
+</div>
+
+<!-- Content Section -->
+<div class="max-w-4xl mx-auto px-4 py-16">
+  <h1 class="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900">
+    Sobre Nosotros
+  </h1>
+
+  <div class="prose prose-lg mx-auto text-gray-600 leading-relaxed">
+    <p class="mb-6">
+      En Kusy Perú, nos enorgullece ser más que una simple tienda de moda en
+      línea. Somos un destino donde la elegancia se encuentra con la comodidad,
+      ofreciendo una cuidadosa selección de prendas tanto para ella como para
+      él.
+    </p>
+
+    <p class="mb-6">
+      Nuestra misión es proporcionar una experiencia de compra única, donde cada
+      prenda cuenta una historia de estilo y calidad. Entendemos que la moda es
+      una forma de expresión personal, y por eso nos esforzamos en ofrecer una
+      colección que refleje la diversidad y sofisticación de nuestros clientes.
+    </p>
+
+    <p>
+      Con un compromiso inquebrantable con la calidad y el servicio al cliente,
+      Kusy Perú se ha convertido en el destino preferido para aquellos que
+      buscan elevar su guardarropa con piezas que combinan tendencia y
+      atemporalidad.
+    </p>
+  </div>
+</div>
+
+<style>
+  .prose {
+    max-width: 65ch;
+  }
+</style>

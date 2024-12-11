@@ -1,0 +1,20 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/shared/Header.astro";
+import Footer from "../components/shared/Footer.astro";
+import AboutComponent from "../components/About/AboutComponent.astro";
+---
+
+<Layout title="Sobre Nosotros - Kusy Perú">
+    <header
+      class="bg-white py-4 px-10 flex items-center fixed z-50 top-0 w-full justify-between shadow-sm border-b border-gray-100"
+    >
+      <Header />
+    </header>
+    <main class="mt-8 bg-gray-50/50">
+      <AboutComponent />
+    </main>
+    <footer class="bg-[#333333] text-white py-12">
+      <Footer />
+    </footer>
+  </Layout>
