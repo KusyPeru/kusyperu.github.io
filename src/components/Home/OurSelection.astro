@@ -76,64 +76,81 @@ import { TopClothing } from "../../data/clothingData.js";
 </section>
 
 <script type="module">
-  // Replace the existing script section with this updated version
+  // Obtiene referencias a los elementos principales del carrusel
   const carousel = document.getElementById("carousel");
   const prevBtn = document.getElementById("prevBtn");
   const nextBtn = document.getElementById("nextBtn");
+  
+  // Inicializa la posición actual del carrusel
   let currentPosition = 0;
 
+  /**
+   * Determina el número de elementos visibles según el ancho de la pantalla
+   * @returns {number} Número de elementos visibles
+   */
   function getVisibleItems() {
-    if (window.innerWidth >= 1024) return 4; // lg screens
-    if (window.innerWidth >= 768) return 3; // md screens
-    return 1; // mobile
+    if (window.innerWidth >= 1024) return 4; // Pantallas grandes
+    if (window.innerWidth >= 768) return 3;  // Pantallas medianas
+    return 1; // Dispositivos móviles
   }
 
+  /**
+   * Actualiza el estado de los botones de navegación
+   * Deshabilita los botones cuando se llega al inicio o final del carrusel
+   */
   function updateButtonState() {
     const totalItems = [...carousel.children].length;
     const visibleItems = getVisibleItems();
 
+    // Deshabilita el botón previo si estamos al inicio
     prevBtn.disabled = currentPosition <= 0;
+    // Deshabilita el botón siguiente si estamos al final
     nextBtn.disabled = currentPosition >= totalItems - visibleItems;
 
+    // Ajusta la opacidad visual de los botones
     prevBtn.style.opacity = prevBtn.disabled ? "0.5" : "1";
     nextBtn.style.opacity = nextBtn.disabled ? "0.5" : "1";
   }
 
+  /**
+   * Mueve el carrusel en la dirección especificada
+   * @param {string} direction - Dirección del movimiento ('prev' o 'next')
+   */
   function moveCarousel(direction) {
+    // Calcula el ancho de cada elemento y el total de elementos
     const itemWidth = carousel.children[0].offsetWidth;
     const visibleItems = getVisibleItems();
     const totalItems = [...carousel.children].length;
 
+    // Actualiza la posición según la dirección
     if (direction === "next" && currentPosition < totalItems - visibleItems) {
       currentPosition++;
     } else if (direction === "prev" && currentPosition > 0) {
       currentPosition--;
     }
 
-    // If we reach the end, loop to start
-    // if (currentPosition >= totalItems - visibleItems) {
-    //   currentPosition = 0;
-    // }
-    // If we reach the start and go backwards, loop to end
+    // Si llegamos al inicio yendo hacia atrás, volvemos al final
     if (currentPosition < 0) {
       currentPosition = totalItems - visibleItems;
     }
 
+    // Aplica la transformación para mover el carrusel
     carousel.style.transform = `translateX(-${currentPosition * itemWidth}px)`;
     updateButtonState();
   }
 
+  // Agrega los event listeners para los botones de navegación
   prevBtn.addEventListener("click", () => moveCarousel("prev"));
   nextBtn.addEventListener("click", () => moveCarousel("next"));
 
-  // Handle window resize
+  // Maneja el redimensionamiento de la ventana
   window.addEventListener("resize", () => {
     const itemWidth = carousel.children[0].offsetWidth;
     carousel.style.transform = `translateX(-${currentPosition * itemWidth}px)`;
     updateButtonState();
   });
 
-  // Initialize
+  // Inicializa el estado de los botones
   updateButtonState();
 </script>
 

@@ -77,20 +77,39 @@ import imageAbout4 from "../../assets/about/about_hero_4.webp";
 </style>
 
 <script type="module">
+  // Inicializa el índice de la diapositiva actual
   let currentSlide = 0;
+
+  // Obtiene todos los elementos con la clase 'carousel-slide'
   const slides = document.querySelectorAll(".carousel-slide");
 
+  /**
+   * Muestra la diapositiva en el índice especificado
+   * @param {number} index - El índice de la diapositiva a mostrar
+   */
   function showSlide(index) {
+    // Oculta todas las diapositivas estableciendo su opacidad en 0
     slides.forEach((slide) => (slide.style.opacity = "0"));
+    
+    // Muestra la diapositiva seleccionada estableciendo su opacidad en 1
     slides[index].style.opacity = "1";
   }
 
+  /**
+   * Avanza a la siguiente diapositiva
+   * Usa el operador módulo para volver a la primera diapositiva
+   */
   function nextSlide() {
+    // Calcula el índice de la siguiente diapositiva usando módulo para ciclar
     currentSlide = (currentSlide + 1) % slides.length;
+    
+    // Muestra la siguiente diapositiva
     showSlide(currentSlide);
   }
 
-  // Initialize carousel
+  // Muestra la primera diapositiva al cargar la página
   showSlide(0);
+  
+  // Inicia el carrusel automático cada 3.5 segundos
   setInterval(nextSlide, 3500);
 </script>

@@ -34,20 +34,21 @@ import BannerImage from "../../assets/banner/banner.webp";
     // 1. Desvanece el texto actual
     animatedText.style.opacity = "0";
 
+    // 2. Cambia el texto después de completar la transición de desvanecimiento
     setTimeout(() => {
-      // 2. Cambia el texto después de la transición de desvanecimiento (500 ms)
-      currentIndex = (currentIndex + 1) % titles.length; // Incrementa el índice
+      currentIndex = (currentIndex + 1) % titles.length; // Avanza al siguiente texto
       animatedText.textContent = titles[currentIndex];
 
-      // 3. Vuelve a hacer visible el texto
+      // 3. Aparece el nuevo texto después de que el contenido cambió
       animatedText.style.opacity = "1";
-    }, 500); // Tiempo de desvanecimiento
+    }, 500); // Duración del desvanecimiento
   }
 
-  // Muestra el primer texto inmediatamente al cargar la página
+  // Mostrar el primer texto al cargar la página
   animatedText.textContent = titles[currentIndex];
   animatedText.style.opacity = "1";
 
-  // Ejecuta `updateText` cada 3 segundos, pero ajusta el tiempo total (3s = visibilidad + transición)
-  setTimeout(updateText, 3500);
+  // Ejecuta `updateText` cada 3.5 segundos (3s visible + 0.5s transición)
+  setInterval(updateText, 3500);
+  updateText();
 </script>

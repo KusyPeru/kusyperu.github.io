@@ -93,28 +93,46 @@ const { title, price = 0, shippingCost = 15.0, image } = Astro.props;
 </div>
 
 <script lang="js">
+  // Obtiene referencias a los elementos del DOM para cantidad, subtotal y total
   const quantity = document.getElementById("quantity");
   const subtotal = document.getElementById("subtotal");
   const total = document.getElementById("total");
 
-  // Get initial price from the page
+  // Obtiene el precio inicial del producto desde el contenido de la página
+  // y elimina el prefijo "S/ " para convertirlo a número
   const initialPrice = parseFloat(subtotal.textContent.replace("S/ ", ""));
+  
+  // Define el costo fijo de envío
   const shippingCost = 15.0;
 
+  /**
+   * Actualiza los precios (subtotal y total) basado en la cantidad
+   * @param {number} qty - La cantidad de productos seleccionada
+   */
   function updatePrices(qty) {
+    // Calcula el subtotal multiplicando el precio inicial por la cantidad
     const subtotalAmount = initialPrice * qty;
+    
+    // Actualiza el texto del subtotal con formato de 2 decimales
     subtotal.textContent = `S/ ${subtotalAmount.toFixed(2)}`;
+    
+    // Actualiza el total sumando el costo de envío
     total.textContent = `S/ ${(subtotalAmount + shippingCost).toFixed(2)}`;
   }
 
+  // Escucha el evento click del botón incrementar
   document.getElementById("incrementBtn").addEventListener("click", () => {
+    // Obtiene la cantidad actual y la incrementa en 1
     const currentQty = parseInt(quantity.textContent);
     quantity.textContent = currentQty + 1;
     updatePrices(currentQty + 1);
   });
 
+  // Escucha el evento click del botón decrementar
   document.getElementById("decrementBtn").addEventListener("click", () => {
+    // Obtiene la cantidad actual
     const currentQty = parseInt(quantity.textContent);
+    // Solo decrementa si la cantidad es mayor a 1
     if (currentQty > 1) {
       quantity.textContent = currentQty - 1;
       updatePrices(currentQty - 1);
