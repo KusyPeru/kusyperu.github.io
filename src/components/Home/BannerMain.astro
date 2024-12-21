@@ -1,0 +1,53 @@
+---
+import BannerImage from "../../assets/banner/banner.webp";
+---
+
+<div class="relative h-[300px] w-full overflow-hidden">
+  <img
+    src={BannerImage.src}
+    alt="Banner"
+    class="absolute w-full h-full object-cover"
+  />
+  <div class="absolute inset-0 bg-white bg-opacity-5"></div>
+  <div class="flex items-center justify-center h-full">
+    <h1
+      id="animated-text"
+      class="text-white text-5xl md:text-5xl font-bold text-center opacity-0 transition-opacity duration-500"
+    >
+    </h1>
+  </div>
+</div>
+
+<script type="module">
+  const animatedText = document.getElementById("animated-text");
+
+  const titles = [
+    "Welcome to Our Website",
+    "Experience Quality Service",
+    "Discover Amazing Products",
+    "Join Our Community",
+    "Start Your Journey",
+  ];
+
+  let currentIndex = 0;
+
+  function updateText() {
+    // Fade out
+    animatedText.style.opacity = "0";
+
+    setTimeout(() => {
+      // Update text
+      currentIndex = (currentIndex + 1) % titles.length;
+      animatedText.textContent = titles[currentIndex];
+
+      // Fade in
+      animatedText.style.opacity = "1";
+    }, 500);
+  }
+
+  // Show initial text
+  animatedText.style.opacity = "1";
+
+  // Start the interval
+  setInterval(updateText, 3000);
+</script>
