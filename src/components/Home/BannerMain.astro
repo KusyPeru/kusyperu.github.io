@@ -31,22 +31,23 @@ import BannerImage from "../../assets/banner/banner.webp";
   let currentIndex = 0;
 
   function updateText() {
-    // Fade out
+    // 1. Desvanece el texto actual
     animatedText.style.opacity = "0";
 
     setTimeout(() => {
-      // Update text
-      currentIndex = (currentIndex + 1) % titles.length;
+      // 2. Cambia el texto después de la transición de desvanecimiento (500 ms)
+      currentIndex = (currentIndex + 1) % titles.length; // Incrementa el índice
       animatedText.textContent = titles[currentIndex];
 
-      // Fade in
+      // 3. Vuelve a hacer visible el texto
       animatedText.style.opacity = "1";
-    }, 500);
+    }, 500); // Tiempo de desvanecimiento
   }
 
-  // Show initial text
+  // Muestra el primer texto inmediatamente al cargar la página
+  animatedText.textContent = titles[currentIndex];
   animatedText.style.opacity = "1";
 
-  // Start the interval
-  setInterval(updateText, 3000);
+  // Ejecuta `updateText` cada 3 segundos, pero ajusta el tiempo total (3s = visibilidad + transición)
+  setTimeout(updateText, 3500);
 </script>
