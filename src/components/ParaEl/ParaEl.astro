@@ -1,10 +1,5 @@
 ---
-import ImageMenClothing1 from "../../assets/clothing/men_clothing/chompa_elegante_cuello_vuelto_hombre_burdeos.webp";
-import ImageMenClothing2 from "../../assets/clothing/men_clothing/sueter_elegante_cuello_redondo_hombre_andino.webp";
-import ImageMenClothing3 from "../../assets/clothing/men_clothing/polo_cuello_redondo_hombre_gris.webp";
-import ImageMenClothing4 from "../../assets/clothing/men_clothing/polo_elegante_casual_hombre_azul_marino.webp";
-import ImageMenClothing5 from "../../assets/clothing/men_clothing/polo_elegante_casual_hombre_blanco.webp";
-import ImageMenClothing6 from "../../assets/clothing/men_clothing/sueter_elegante_cuello_redondo_hombre_crema.webp";
+import { MenClothings } from "../../data/clothingData.js";
 ---
 
 <header class="text-center py-12">
@@ -13,89 +8,24 @@ import ImageMenClothing6 from "../../assets/clothing/men_clothing/sueter_elegant
 </header>
 
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-  <!-- Producto 1 -->
-  <div class="group text-center">
-    <div class="overflow-hidden rounded-xl">
-      <img
-        src={ImageMenClothing1.src}
-        alt="Enterizo Formal Manga Larga"
-        class="w-full h-[450px] object-contain transition-transform duration-300 ease-in-out group-hover:scale-105 rounded-xl bg-gray-50"
-      />
-    </div>
-    <p class="mt-4 font-semibold text-center">
-      Chompa Elegante Cuello Vuelto Burdeos
-    </p>
-    <p class="mt-1 text-gray-500 text-center">S/ 130.90</p>
-  </div>
-
-  <!-- Producto 2 -->
-  <div class="group text-center">
-    <div class="overflow-hidden rounded-xl">
-      <img
-        src={ImageMenClothing2.src}
-        alt="Vestido Elegante Largo Blanco"
-        class="w-full h-[450px] object-contain transition-transform duration-300 ease-in-out group-hover:scale-105 rounded-xl bg-gray-50"
-      />
-    </div>
-    <p class="mt-4 font-semibold text-center">
-      Sueter Elegante Cuello Redondo Andino
-    </p>
-    <p class="mt-1 text-gray-500 text-center">S/ 139.90</p>
-  </div>
-
-  <!-- Producto 3 -->
-  <div class="group text-center">
-    <div class="overflow-hidden rounded-xl">
-      <img
-        src={ImageMenClothing3.src}
-        alt="Vestido Elegante Midi Semi Transparente"
-        class="w-full h-[450px] object-contain transition-transform duration-300 ease-in-out group-hover:scale-105 rounded-xl bg-gray-50"
-      />
-    </div>
-    <p class="mt-4 font-semibold text-center">Polo Cuello Redondo Gris</p>
-    <p class="mt-1 text-gray-500 text-center">S/ 60.90</p>
-  </div>
-
-  <!-- Producto 4 -->
-  <div class="group text-center">
-    <div class="overflow-hidden rounded-xl">
-      <img
-        src={ImageMenClothing4.src}
-        alt="Vestido Elegante Midi Bordeado Blanco"
-        class="w-full h-[450px] object-contain transition-transform duration-300 ease-in-out group-hover:scale-105 rounded-xl bg-gray-50"
-      />
-    </div>
-    <p class="mt-4 font-semibold text-center">
-      Polo Elegante Casual Azul Marino
-    </p>
-    <p class="mt-1 text-gray-500 text-center">S/ 50.90</p>
-  </div>
-
-  <!-- Producto 5 -->
-  <div class="group text-center">
-    <div class="overflow-hidden rounded-xl">
-      <img
-        src={ImageMenClothing5.src}
-        alt="Vestido Elegante Midi Rojo"
-        class="w-full h-[450px] object-contain transition-transform duration-300 ease-in-out group-hover:scale-105 rounded-xl bg-gray-50"
-      />
-    </div>
-    <p class="mt-4 font-semibold text-center">Polo Elegante Casual Blanco</p>
-    <p class="mt-1 text-gray-500 text-center">S/ 40.90</p>
-  </div>
-
-  <!-- Producto 6 -->
-  <div class="group text-center">
-    <div class="overflow-hidden rounded-xl">
-      <img
-        src={ImageMenClothing6.src}
-        alt="Vestido Elegante Midi Negro"
-        class="w-full h-[450px] object-contain transition-transform duration-300 ease-in-out group-hover:scale-105 rounded-xl bg-gray-50"
-      />
-    </div>
-    <p class="mt-4 font-semibold text-center">
-      Sueter Elegante Cuello Redondo Crema
-    </p>
-    <p class="mt-1 text-gray-500 text-center">S/ 109.90</p>
-  </div>
+  {
+    MenClothings.map((item) => (
+      <a
+        href={`/clothing/${item.slug}`}
+        class="group text-center"
+      >
+        <div class="overflow-hidden rounded-xl">
+          <img
+            src={item.image.src}
+            alt={item.name}
+            class="w-full h-[450px] object-contain transition-transform duration-300 ease-in-out group-hover:scale-105 rounded-xl bg-gray-50"
+          />
+        </div>
+        <p class="mt-4 font-semibold text-center">{item.name}</p>
+        <p class="mt-1 text-gray-500 text-center">
+          S/ {item.price.toFixed(2)}
+        </p>
+      </a>
+    ))
+  }
 </div>

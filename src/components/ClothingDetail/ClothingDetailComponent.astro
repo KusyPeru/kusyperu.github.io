@@ -1,0 +1,123 @@
+---
+interface Props {
+  title: string;
+  price: number;
+  shippingCost: number;
+  image: string;
+}
+
+const { title, price = 0, shippingCost = 15.0, image } = Astro.props;
+---
+
+<div class="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+    <!-- Left Column - Image -->
+    <div class="space-y-6">
+      <h2 class="text-xl font-medium text-gray-900 mb-4">Producto</h2>
+      <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+        <img
+          src={image}
+          alt={title}
+          class="w-full h-auto object-cover object-center"
+        />
+      </div>
+    </div>
+
+    <!-- Right Column - Details -->
+    <div class="space-y-8">
+      <div>
+        <h1 class="text-3xl font-bold text-gray-900 mb-4">{title}</h1>
+        <p class="text-4xl font-semibold text-gray-900">
+          S/ {price.toFixed(2)}
+        </p>
+      </div>
+
+      <!-- Quantity Selector and Buy Button -->
+      <div class="flex items-center space-x-4">
+        <div class="flex items-center border border-gray-300 rounded-lg">
+          <button
+            class="px-4 py-2 text-gray-600 hover:bg-gray-100 transition-colors"
+            id="decrementBtn"
+          >
+            -
+          </button>
+          <span class="px-4 py-2 border-x border-gray-300" id="quantity">1</span
+          >
+          <button
+            class="px-4 py-2 text-gray-600 hover:bg-gray-100 transition-colors"
+            id="incrementBtn"
+          >
+            +
+          </button>
+        </div>
+        <button
+          class="bg-black text-white px-8 py-2 rounded-lg hover:bg-gray-800 transition-colors"
+        >
+          Pagar Ahora
+        </button>
+      </div>
+
+      <!-- Description -->
+      <div>
+        <h3 class="text-xl font-medium text-gray-900 mb-3">Descripción</h3>
+        <p class="text-gray-600">
+          Prenda elegante confeccionada con los más altos estándares de calidad,
+          perfecta para ocasiones especiales.
+        </p>
+      </div>
+
+      <!-- Cart Summary -->
+      <div class="border-t border-gray-200 pt-8">
+        <h3 class="text-xl font-medium text-gray-900 mb-6">
+          Total del Carrito
+        </h3>
+        <div class="space-y-4">
+          <div class="flex justify-between">
+            <span class="text-gray-600">Subtotal</span>
+            <span class="font-medium" id="subtotal">S/ {price.toFixed(2)}</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-600">Envío</span>
+            <span class="font-medium">S/ {shippingCost.toFixed(2)}</span>
+          </div>
+          <div class="flex justify-between border-t border-gray-200 pt-4">
+            <span class="text-lg font-medium">Total</span>
+            <span class="text-lg font-bold" id="total">
+              S/ {(price + shippingCost).toFixed(2)}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script lang="js">
+  const quantity = document.getElementById("quantity");
+  const subtotal = document.getElementById("subtotal");
+  const total = document.getElementById("total");
+
+  // Get initial price from the page
+  const initialPrice = parseFloat(subtotal.textContent.replace("S/ ", ""));
+  const shippingCost = 15.0;
+
+  function updatePrices(qty) {
+    const subtotalAmount = initialPrice * qty;
+    subtotal.textContent = `S/ ${subtotalAmount.toFixed(2)}`;
+    total.textContent = `S/ ${(subtotalAmount + shippingCost).toFixed(2)}`;
+  }
+
+  document.getElementById("incrementBtn").addEventListener("click", () => {
+    const currentQty = parseInt(quantity.textContent);
+    quantity.textContent = currentQty + 1;
+    updatePrices(currentQty + 1);
+  });
+
+  document.getElementById("decrementBtn").addEventListener("click", () => {
+    const currentQty = parseInt(quantity.textContent);
+    if (currentQty > 1) {
+      quantity.textContent = currentQty - 1;
+      updatePrices(currentQty - 1);
+    }
+  });
+</script>

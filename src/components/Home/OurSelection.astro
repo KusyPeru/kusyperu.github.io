@@ -1,61 +1,75 @@
 ---
-import imgWomenClothing1 from "../../assets/clothing/women_clothing/vestido_largo_fluido_mujer_rojo_1.webp";
-import imgWomenClothing2 from "../../assets/clothing/women_clothing/chompa_elegante_corte_recto_mujer.webp";
-import imgMenClothing1 from "../../assets/clothing/men_clothing/casaca_elegante_cuero_hombre_negro.webp";
-
-const products = [
-  { id: 1, img: imgWomenClothing1, name: "Vestido Largo Fluido Rojo", price: "189.90", slug: "vestido-largo-fluido-rojo" },
-  { id: 2, img: imgWomenClothing2, name: "Chompa Elegante Corte Recto", price: "149.90", slug: "chompa-elegante" },
-  { id: 3, img: imgMenClothing1, name: "Casaca Elegante de Cuero", price: "299.90", slug: "casaca-elegante" },
-  { id: 4, img: imgWomenClothing1, name: "Vestido Largo Fluido Rojo", price: "189.90", slug: "vestido-largo-fluido-rojo" },
-  { id: 5, img: imgWomenClothing2, name: "Chompa Elegante Corte Recto", price: "149.90", slug: "chompa-elegante" },
-  { id: 6, img: imgMenClothing1, name: "Casaca Elegante de Cuero", price: "299.90", slug: "casaca-elegante" },
-];
+import { TopClothing } from "../../data/clothingData.js";
 ---
 
 <section class="nuestraSeleccion text-center py-8 px-4 md:px-8">
   <h2 class="text-2xl font-bold mb-4">Nuestra Selección</h2>
-  
+
   <div class="relative overflow-hidden">
     <div id="carousel-container" class="overflow-hidden mx-12">
-      <div id="carousel" class="flex transition-transform duration-300 ease-in-out">
-        {[...products, ...products, ...products].map((product, index) => (
-          <a 
-            href={`/clothing/${product.slug}`} 
-            class="w-full md:w-1/3 lg:w-1/4 flex-shrink-0 px-4 group cursor-pointer transform transition-transform duration-300"
-            data-index={index}
-          >
-            <div class="overflow-hidden rounded-xl">
-              <img
-                src={product.img.src}
-                alt={product.name}
-                class="w-full h-auto transition-transform duration-300 ease-in-out group-hover:scale-110 rounded-xl"
-              />
-            </div>
-            <p class="mt-2 font-semibold">{product.name}</p>
-            <p class="text-gray-500">S/ {product.price}</p>
-          </a>
-        ))}
+      <div
+        id="carousel"
+        class="flex transition-transform duration-300 ease-in-out"
+      >
+        {
+          TopClothing.map((item, index) => (
+            <a
+              href={`/clothing/${item.slug}`}
+              class="w-full md:w-1/3 lg:w-1/4 flex-shrink-0 px-4 group cursor-pointer transform transition-transform duration-300"
+              data-index={index}
+            >
+              <div class="overflow-hidden rounded-xl">
+                <img
+                  src={item.image?.src}
+                  alt={item.name}
+                  class="w-full h-auto transition-transform duration-300 ease-in-out group-hover:scale-110 rounded-xl"
+                />
+              </div>
+              <p class="mt-2 font-semibold">{item.name}</p>
+              <p class="text-gray-500">S/ {item.price}</p>
+            </a>
+          ))
+        }
       </div>
     </div>
 
-    <button 
+    <button
       id="prevBtn"
       class="absolute left-0 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-lg z-10 transition-all duration-200 hover:scale-110"
       aria-label="Previous slide"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M15 19l-7-7 7-7"></path>
       </svg>
     </button>
 
-    <button 
+    <button
       id="nextBtn"
       class="absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-lg z-10 transition-all duration-200 hover:scale-110"
       aria-label="Next slide"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M9 5l7 7-7 7"></path>
       </svg>
     </button>
   </div>
@@ -63,64 +77,64 @@ const products = [
 
 <script type="module">
   // Replace the existing script section with this updated version
-const carousel = document.getElementById('carousel');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-let currentPosition = 0;
+  const carousel = document.getElementById("carousel");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  let currentPosition = 0;
 
-function getVisibleItems() {
-  if (window.innerWidth >= 1024) return 4; // lg screens
-  if (window.innerWidth >= 768) return 3;  // md screens
-  return 1; // mobile
-}
-
-function updateButtonState() {
-  const totalItems = [...carousel.children].length;
-  const visibleItems = getVisibleItems();
-  
-  prevBtn.disabled = currentPosition <= 0;
-  nextBtn.disabled = currentPosition >= totalItems - visibleItems;
-  
-  prevBtn.style.opacity = prevBtn.disabled ? "0.5" : "1";
-  nextBtn.style.opacity = nextBtn.disabled ? "0.5" : "1";
-}
-
-function moveCarousel(direction) {
-  const itemWidth = carousel.children[0].offsetWidth;
-  const visibleItems = getVisibleItems();
-  const totalItems = [...carousel.children].length;
-
-  if (direction === 'next' && currentPosition < totalItems - visibleItems) {
-    currentPosition++;
-  } else if (direction === 'prev' && currentPosition > 0) {
-    currentPosition--;
+  function getVisibleItems() {
+    if (window.innerWidth >= 1024) return 4; // lg screens
+    if (window.innerWidth >= 768) return 3; // md screens
+    return 1; // mobile
   }
 
-  // If we reach the end, loop to start
-  // if (currentPosition >= totalItems - visibleItems) {
-  //   currentPosition = 0;
-  // }
-  // If we reach the start and go backwards, loop to end
-  if (currentPosition < 0) {
-    currentPosition = totalItems - visibleItems;
+  function updateButtonState() {
+    const totalItems = [...carousel.children].length;
+    const visibleItems = getVisibleItems();
+
+    prevBtn.disabled = currentPosition <= 0;
+    nextBtn.disabled = currentPosition >= totalItems - visibleItems;
+
+    prevBtn.style.opacity = prevBtn.disabled ? "0.5" : "1";
+    nextBtn.style.opacity = nextBtn.disabled ? "0.5" : "1";
   }
 
-  carousel.style.transform = `translateX(-${currentPosition * itemWidth}px)`;
+  function moveCarousel(direction) {
+    const itemWidth = carousel.children[0].offsetWidth;
+    const visibleItems = getVisibleItems();
+    const totalItems = [...carousel.children].length;
+
+    if (direction === "next" && currentPosition < totalItems - visibleItems) {
+      currentPosition++;
+    } else if (direction === "prev" && currentPosition > 0) {
+      currentPosition--;
+    }
+
+    // If we reach the end, loop to start
+    // if (currentPosition >= totalItems - visibleItems) {
+    //   currentPosition = 0;
+    // }
+    // If we reach the start and go backwards, loop to end
+    if (currentPosition < 0) {
+      currentPosition = totalItems - visibleItems;
+    }
+
+    carousel.style.transform = `translateX(-${currentPosition * itemWidth}px)`;
+    updateButtonState();
+  }
+
+  prevBtn.addEventListener("click", () => moveCarousel("prev"));
+  nextBtn.addEventListener("click", () => moveCarousel("next"));
+
+  // Handle window resize
+  window.addEventListener("resize", () => {
+    const itemWidth = carousel.children[0].offsetWidth;
+    carousel.style.transform = `translateX(-${currentPosition * itemWidth}px)`;
+    updateButtonState();
+  });
+
+  // Initialize
   updateButtonState();
-}
-
-prevBtn.addEventListener('click', () => moveCarousel('prev'));
-nextBtn.addEventListener('click', () => moveCarousel('next'));
-
-// Handle window resize
-window.addEventListener('resize', () => {
-  const itemWidth = carousel.children[0].offsetWidth;
-  carousel.style.transform = `translateX(-${currentPosition * itemWidth}px)`;
-  updateButtonState();
-});
-
-// Initialize
-updateButtonState();
 </script>
 
 <style>

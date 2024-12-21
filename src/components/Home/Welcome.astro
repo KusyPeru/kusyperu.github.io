@@ -1,5 +1,7 @@
 ---
-import imgWelcome from "../../assets/welcome/welcome.webp";
+import imgWelcome1 from "../../assets/welcome/welcome1.webp";
+import imgWelcome2 from "../../assets/welcome/welcome2.webp";
+import imgWelcome3 from "../../assets/welcome/welcome3.webp";
 ---
 
 <section class="bienvenida relative h-[600px] overflow-hidden">
@@ -8,7 +10,7 @@ import imgWelcome from "../../assets/welcome/welcome.webp";
     class="carousel-slide absolute inset-0 opacity-100 transition-opacity duration-1000"
   >
     <img
-      src={imgWelcome.src}
+      src={imgWelcome1.src}
       alt="Bienvenida"
       class="w-full h-full object-cover"
     />
@@ -26,7 +28,7 @@ import imgWelcome from "../../assets/welcome/welcome.webp";
   <div
     class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-1000"
   >
-    <img src={imgWelcome.src} alt="Moda" class="w-full h-full object-cover" />
+    <img src={imgWelcome2.src} alt="Moda" class="w-full h-full object-cover" />
     <div
       class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center"
     >
@@ -42,7 +44,7 @@ import imgWelcome from "../../assets/welcome/welcome.webp";
     class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-1000"
   >
     <img
-      src={imgWelcome.src}
+      src={imgWelcome3.src}
       alt="Ofertas"
       class="w-full h-full object-cover"
     />
@@ -67,7 +69,7 @@ import imgWelcome from "../../assets/welcome/welcome.webp";
   </div>
 </section>
 
-<script lang="js" type="module">
+<script type="module">
   let currentSlide = 0;
   const slides = document.querySelectorAll(".carousel-slide");
   const puntos = document.querySelectorAll(".bottom-4 button");
