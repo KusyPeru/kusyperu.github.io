@@ -1,15 +1,52 @@
 ---
-import imageAbout from "../../assets/about/about_hero.webp";
+import imageAbout2 from "../../assets/about/about_hero_2.webp";
+import imageAbout3 from "../../assets/about/about_hero_3.webp";
+import imageAbout4 from "../../assets/about/about_hero_4.webp";
+import imageAbout5 from "../../assets/about/about_hero_5.webp";
 ---
 
 <!-- Hero Image Section -->
 <div class="w-full h-[80vh] relative">
-  <img
-    src={imageAbout.src}
-    alt="Kusy Perú Moda"
-    class="w-full h-full object-cover"
-  />
-  <div class="absolute inset-0 bg-black/30"></div>
+  <!-- Slide 2 -->
+  <div
+    class="carousel-slide absolute inset-0 opacity-100 transition-opacity duration-1000"
+  >
+    <img
+      src={imageAbout2.src}
+      alt="Kusy Perú Moda"
+      class="w-full h-full object-cover"
+    />
+  </div>
+  <!-- Slide 3 -->
+  <div
+    class="carousel-slide absolute inset-0 opacity-100 transition-opacity duration-1000"
+  >
+    <img
+      src={imageAbout3.src}
+      alt="Kusy Perú Moda"
+      class="w-full h-full object-cover"
+    />
+  </div>
+  <!-- Slide 4 -->
+  <div
+    class="carousel-slide absolute inset-0 opacity-100 transition-opacity duration-1000"
+  >
+    <img
+      src={imageAbout4.src}
+      alt="Kusy Perú Moda"
+      class="w-full h-full object-cover"
+    />
+  </div>
+  <!-- Slide 5 -->
+  <div
+    class="carousel-slide absolute inset-0 opacity-100 transition-opacity duration-1000"
+  >
+    <img
+      src={imageAbout5.src}
+      alt="Kusy Perú Moda"
+      class="w-full h-full object-cover"
+    />
+  </div>
 </div>
 
 <!-- Content Section -->
@@ -28,16 +65,18 @@ import imageAbout from "../../assets/about/about_hero.webp";
       significativo en las personas. Nuestra misión es hacer que la cultura
       peruana sea conocida, reconocida y apreciada a nivel mundial.
     </p>
-    <h2 class="text-4xl md:text-4xl font-bold text-center mb-12 mt-12 text-gray-900">
+    <h2
+      class="text-4xl md:text-4xl font-bold text-center mb-12 mt-12 text-gray-900"
+    >
       Visión y Misión
     </h2>
     <p class="mb-6">
       Nuestra visión es ser líderes mundiales en la moda sostenible y
       culturalmente rica. Nuestra misión es promover la identidad peruana a
       través de productos textiles de alta calidad, respetando nuestro
-      patrimonio. Nos esforzamos por combinar tradición y
-      modernidad en cada prenda, asegurando que cada pieza cuente una historia
-      única de nuestro país.
+      patrimonio. Nos esforzamos por combinar tradición y modernidad en cada
+      prenda, asegurando que cada pieza cuente una historia única de nuestro
+      país.
     </p>
   </div>
 </div>
@@ -47,3 +86,22 @@ import imageAbout from "../../assets/about/about_hero.webp";
     max-width: 65ch;
   }
 </style>
+
+<script type="module">
+  let currentSlide = 0;
+  const slides = document.querySelectorAll(".carousel-slide");
+
+  function showSlide(index) {
+    slides.forEach((slide) => (slide.style.opacity = "0"));
+    slides[index].style.opacity = "1";
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  // Initialize carousel
+  showSlide(0);
+  setInterval(nextSlide, 3500);
+</script>
